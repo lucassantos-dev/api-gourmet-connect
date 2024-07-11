@@ -1,10 +1,7 @@
 package com.lucas.gourmet_connect.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +12,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 @EqualsAndHashCode(of = "id")
 public class Ingredient {
     @Id
@@ -31,5 +29,10 @@ public class Ingredient {
             inverseJoinColumns = @JoinColumn(name="ingredient_category")
     )
     private Set<IngredientCategory> categories = new HashSet<>();
-
+    @ManyToMany
+    @JoinTable(name = "tb_ingredient_substitutes",
+            joinColumns = @JoinColumn(name = "ingredient_id"),
+            inverseJoinColumns = @JoinColumn(name = "substitute_id")
+    )
+    private Set<Ingredient> substitutes = new HashSet<>();
 }

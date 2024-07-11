@@ -1,18 +1,17 @@
 package com.lucas.gourmet_connect.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "tb_recipe")
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -21,7 +20,12 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
-    private String instructions;
+    private String description;
+    private String imageUrl;
+    @ElementCollection
+    @CollectionTable(name = "recipe_instructions", joinColumns = @JoinColumn(name = "recipe_id"))
+    @Column(name = "instruction")
+    private List<String> instructions;
     private Integer prepTime;
     @ManyToOne
     @JoinColumn(name = "difficulty_id")
