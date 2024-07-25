@@ -45,13 +45,13 @@ public class TestConfig implements CommandLineRunner {
 
         originRepository.saveAll(Arrays.asList(origin1, origin2));
 
-        Ingredient ingredient1 = new Ingredient(null, "Chicken", "Fresh chicken breast", origin1, new HashSet<>(), new HashSet<>());
+        Ingredient ingredient1 = new Ingredient(null, "Chicken", "Fresh chicken breast", origin1, new HashSet<>(), new HashSet<>(), new HashSet<>());
         ingredient1.getCategories().addAll(Arrays.asList(ingredientCategory1, ingredientCategory2));
 
-        Ingredient ingredient2 = new Ingredient(null, "Tomato", "Ripe tomatoes", origin2, new HashSet<>(), new HashSet<>());
+        Ingredient ingredient2 = new Ingredient(null, "Tomato", "Ripe tomatoes", origin2, new HashSet<>(), new HashSet<>(), new HashSet<>());
         ingredient2.getCategories().add(ingredientCategory2);
 
-        Ingredient ingredient3 = new Ingredient(null, "Rice", "Long grain white rice", origin1, new HashSet<>(), new HashSet<>());
+        Ingredient ingredient3 = new Ingredient(null, "Rice", "Long grain white rice", origin1, new HashSet<>(), new HashSet<>(), new HashSet<>());
         ingredient3.getCategories().add(ingredientCategory3);
 
         ingredientRepository.saveAll(Arrays.asList(ingredient1, ingredient2, ingredient3));
@@ -78,23 +78,24 @@ public class TestConfig implements CommandLineRunner {
 
         recipeCategoryRepository.saveAll(Arrays.asList(recipeCategory1, recipeCategory2));
 
-        Recipe recipe1 = new Recipe(null, "Chicken Soup", "Sopa de frango","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 30, difficulty1, new HashSet<>());
+        Recipe recipe1 = new Recipe(null, "Chicken Soup", "Sopa de frango","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 30, difficulty1, new HashSet<>(), new HashSet<>());
         recipe1.getCategories().add(recipeCategory1);
+        recipe1.getIngredients().add(ingredient3);
 
-        Recipe recipe2 = new Recipe(null, "Tomato Salad", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>());
+        Recipe recipe2 = new Recipe(null, "Tomato Salad", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
         recipe2.getCategories().add(recipeCategory2);
 
 
-        Recipe recipe3 = new Recipe(null, "Tomato", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>());
-        recipe2.getCategories().add(recipeCategory2);
+        Recipe recipe3 = new Recipe(null, "Tomato", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
+        recipe3.getCategories().add(recipeCategory1);
+        recipe3.getCategories().add(recipeCategory2);
+
+        Recipe recipe4 = new Recipe(null, "Salad", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
+        recipe4.getCategories().add(recipeCategory2);
 
 
-        Recipe recipe4 = new Recipe(null, "Salad", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>());
-        recipe2.getCategories().add(recipeCategory2);
-
-
-        Recipe recipe5 = new Recipe(null, "Tomato Salad 2", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>());
-        recipe2.getCategories().add(recipeCategory2);
+        Recipe recipe5 = new Recipe(null, "Tomato Salad 2", "Salada de tomate","https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9",instructions1, 15, difficulty1, new HashSet<>(),  new HashSet<>());
+        recipe5.getCategories().add(recipeCategory2);
         recipeRepository.saveAll(Arrays.asList(recipe1, recipe2,recipe3, recipe4, recipe5));
     }
 }

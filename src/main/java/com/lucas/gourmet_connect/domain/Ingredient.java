@@ -1,5 +1,6 @@
 package com.lucas.gourmet_connect.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,4 +36,7 @@ public class Ingredient {
             inverseJoinColumns = @JoinColumn(name = "substitute_id")
     )
     private Set<Ingredient> substitutes = new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(mappedBy = "recipe")
+    private Set<Recipe> recipes = new HashSet<>();
 }
