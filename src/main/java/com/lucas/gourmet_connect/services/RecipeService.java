@@ -55,5 +55,6 @@ public class RecipeService {
         entity.setPrepTime(obj.getPrepTime());
         entity.setCategories(obj.getCategories());
         entity.setDifficulty(obj.getDifficulty());
+        entity.setRecipeIngredients(obj.getRecipeIngredients());
     }
 }

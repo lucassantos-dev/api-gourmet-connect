@@ -36,9 +36,13 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name="recipe_category")
     )
     private Set<RecipeCategory> categories = new HashSet<>();
-    @JoinTable(name = "tb_recipe_ingredient" ,
-            joinColumns = @JoinColumn(name="recipe_id"),
-            inverseJoinColumns = @JoinColumn(name="recipe_ingredient")
-    )
-    private Set<Ingredient> ingredients = new HashSet<>();
+    @OneToMany(mappedBy = "recipe")
+    private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
+//     @ManyToMany
+//     @JoinTable(
+//             name = "tb_recipe_ingredient",
+//             joinColumns = @JoinColumn(name = "recipe_id"),
+//             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+//     )
+//     private Set<Ingredient> ingredients = new HashSet<>();
 }

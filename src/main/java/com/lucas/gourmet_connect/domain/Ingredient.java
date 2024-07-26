@@ -21,6 +21,8 @@ public class Ingredient {
     private UUID id;
     private String name;
     private String description;
+    private String unit;
+    private String imageUrl;
     @ManyToOne
     @JoinColumn(name = "origin_id")
     private  Origin origin;
@@ -37,6 +39,9 @@ public class Ingredient {
     )
     private Set<Ingredient> substitutes = new HashSet<>();
     @JsonIgnore
-    @ManyToMany(mappedBy = "recipe")
-    private Set<Recipe> recipes = new HashSet<>();
+    @OneToMany(mappedBy = "ingredient")
+    private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
+//     @JsonIgnore
+//     @ManyToMany(mappedBy = "ingredients")
+//     private Set<Recipe> recipes = new HashSet<>();
 }

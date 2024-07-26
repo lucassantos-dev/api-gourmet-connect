@@ -9,5 +9,4 @@ public class GourmetConnectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GourmetConnectApplication.class, args);
 	}
-
 }
