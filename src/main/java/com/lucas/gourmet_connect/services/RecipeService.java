@@ -1,5 +1,7 @@
 package com.lucas.gourmet_connect.services;
-import com.lucas.gourmet_connect.domain.Recipe;
+import com.lucas.gourmet_connect.dto.RecipeDTO;
+import com.lucas.gourmet_connect.entities.Recipe;
+import com.lucas.gourmet_connect.mapper.RecipeMapper;
 import com.lucas.gourmet_connect.repositories.RecipeRepository;
 import com.lucas.gourmet_connect.services.exceptions.DatabaseException;
 import com.lucas.gourmet_connect.services.exceptions.ResourceNotFoundException;
@@ -12,18 +14,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
     @Autowired
     RecipeRepository repository;
 
-    public List<Recipe> findAll(){
-        return repository.findAll();
+    public List<RecipeDTO> findAll(){
+        List<Recipe> list = repository.findAll();
+        return list.stream().map(RecipeMapper::toDTO).collect(Collectors.toList());
     }
-    public  Recipe findById(UUID id){
+    public  RecipeDTO findById(UUID id){
         Optional<Recipe> obj = repository.findById(id);
-        return obj.orElseThrow(()-> new ResourceNotFoundException(id));
+        Recipe recipe = obj.orElseThrow(()-> new ResourceNotFoundException(id));
+        return RecipeMapper.toDTO(recipe);
     }
     public  Recipe insert(Recipe obj){
         return  repository.save(obj);
@@ -48,7 +53,7 @@ public class RecipeService {
     }
 
     private void  updateRecipe(Recipe entity, Recipe obj){
-        entity.setTitle(obj.getTitle());
+        entity.setName(obj.getName());
         entity.setDescription(obj.getDescription());
         entity.setImageUrl(obj.getImageUrl());
         entity.setInstructions(obj.getInstructions());

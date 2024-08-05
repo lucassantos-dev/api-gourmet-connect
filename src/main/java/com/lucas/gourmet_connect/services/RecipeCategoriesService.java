@@ -1,5 +1,5 @@
 package com.lucas.gourmet_connect.services;
-import com.lucas.gourmet_connect.domain.RecipeCategory;
+import com.lucas.gourmet_connect.entities.RecipeCategory;
 import com.lucas.gourmet_connect.repositories.RecipeCategoryRepository;
 import com.lucas.gourmet_connect.services.exceptions.DatabaseException;
 import com.lucas.gourmet_connect.services.exceptions.ResourceNotFoundException;

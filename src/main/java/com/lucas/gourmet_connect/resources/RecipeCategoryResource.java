@@ -1,5 +1,5 @@
 package com.lucas.gourmet_connect.resources;
-import com.lucas.gourmet_connect.domain.RecipeCategory;
+import com.lucas.gourmet_connect.entities.RecipeCategory;
 import com.lucas.gourmet_connect.services.RecipeCategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

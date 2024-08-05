@@ -1,7 +1,7 @@
 package com.lucas.gourmet_connect.services;
 
 
-import com.lucas.gourmet_connect.domain.Origin;
+import com.lucas.gourmet_connect.entities.Origin;
 
 import com.lucas.gourmet_connect.repositories.OriginRepository;
 import com.lucas.gourmet_connect.services.exceptions.DatabaseException;

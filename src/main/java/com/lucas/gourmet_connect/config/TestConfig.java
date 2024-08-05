@@ -1,6 +1,6 @@
 package com.lucas.gourmet_connect.config;
 
-import com.lucas.gourmet_connect.domain.*;
+import com.lucas.gourmet_connect.entities.*;
 import com.lucas.gourmet_connect.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +16,7 @@ import java.util.List;
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
+    public static final String URL = "https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9";
     @Autowired
     private DifficultyRepository difficultyRepository;
 
@@ -50,16 +51,23 @@ public class TestConfig implements CommandLineRunner {
 
         originRepository.saveAll(Arrays.asList(origin1, origin2));
 
-        Ingredient ingredient1 = new Ingredient(null, "Chicken", "Fresh chicken breast", "kg","",origin1, new HashSet<>(), new HashSet<>(), new HashSet<>());
+        Ingredient ingredient1 = new Ingredient(null, "Chicken", "Fresh chicken breast", "kg",URL,origin1, new HashSet<>(), new HashSet<>(), new HashSet<>());
         ingredient1.getCategories().addAll(Arrays.asList(ingredientCategory1, ingredientCategory2));
 
-        Ingredient ingredient2 = new Ingredient(null, "Tomato", "Ripe tomatoes", "pieces","",origin2, new HashSet<>(), new HashSet<>(), new HashSet<>());
+        Ingredient ingredient2 = new Ingredient(null, "Tomato", "Ripe tomatoes", "pieces",URL,origin2, new HashSet<>(), new HashSet<>(), new HashSet<>());
         ingredient2.getCategories().add(ingredientCategory2);
 
-        Ingredient ingredient3 = new Ingredient(null, "Rice", "Long grain white rice","kg" ,"",origin1, new HashSet<>(), new HashSet<>(), new HashSet<>());
+        Ingredient ingredient3 = new Ingredient(null, "Rice", "Long grain white rice","kg" ,URL,origin1, new HashSet<>(), new HashSet<>(), new HashSet<>());
         ingredient3.getCategories().add(ingredientCategory3);
 
+
+        ingredient2.getSubstitutes().add(ingredient1);
+        ingredient2.getSubstitutes().add(ingredient3);
+        ingredient3.getSubstitutes().add(ingredient1);
+        ingredient1.getSubstitutes().add(ingredient3);
+//
         ingredientRepository.saveAll(Arrays.asList(ingredient1, ingredient2, ingredient3));
+
 
         Difficulty difficulty1 = new Difficulty(null, "Easy", new HashSet<>());
         Difficulty difficulty2 = new Difficulty(null, "Medium", new HashSet<>());
@@ -69,7 +77,6 @@ public class TestConfig implements CommandLineRunner {
 
         RecipeCategory recipeCategory1 = new RecipeCategory(null, "Soup", new HashSet<>());
         RecipeCategory recipeCategory2 = new RecipeCategory(null, "Dessert", new HashSet<>());
-
         List<String> instructions1 = Arrays.asList(
                 "4 ounces bittersweet chocolate, chopped",
                 "1/2 cup unsalted butter",
@@ -83,20 +90,20 @@ public class TestConfig implements CommandLineRunner {
 
         recipeCategoryRepository.saveAll(Arrays.asList(recipeCategory1, recipeCategory2));
 
-        Recipe recipe1 = new Recipe(null, "Chicken Soup", "Sopa de frango", "https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9", instructions1, 30, difficulty1, new HashSet<>(), new HashSet<>());
+        Recipe recipe1 = new Recipe(null, "Chicken Soup", "Sopa de frango", URL, instructions1, 30,origin1 ,difficulty1, new HashSet<>(), new HashSet<>());
         recipe1.getCategories().add(recipeCategory1);
 
-        Recipe recipe2 = new Recipe(null, "Tomato Salad", "Salada de tomate", "https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9", instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
+        Recipe recipe2 = new Recipe(null, "Tomato Salad", "Salada de tomate", URL, instructions1, 15,origin1, difficulty1, new HashSet<>(), new HashSet<>());
         recipe2.getCategories().add(recipeCategory2);
 
-        Recipe recipe3 = new Recipe(null, "Tomato", "Salada de tomate", "https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9", instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
+        Recipe recipe3 = new Recipe(null, "Tomato", "Salada de tomate", URL, instructions1, 15,origin1, difficulty1, new HashSet<>(), new HashSet<>());
         recipe3.getCategories().add(recipeCategory1);
         recipe3.getCategories().add(recipeCategory2);
 
-        Recipe recipe4 = new Recipe(null, "Salad", "Salada de tomate", "https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9", instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
+        Recipe recipe4 = new Recipe(null, "Salad", "Salada de tomate", URL, instructions1, 15,origin1, difficulty1, new HashSet<>(), new HashSet<>());
         recipe4.getCategories().add(recipeCategory2);
 
-        Recipe recipe5 = new Recipe(null, "Tomato Salad 2", "Salada de tomate", "https://img.freepik.com/fotos-gratis/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.jpg?w=740&t=st=1719511049~exp=1719511649~hmac=fe71fabd82ff12302bfdf8691b3d5b2d65d90139c885112b3af30623f848a7e9", instructions1, 15, difficulty1, new HashSet<>(), new HashSet<>());
+        Recipe recipe5 = new Recipe(null, "Tomato Salad 2", "Salada de tomate", URL, instructions1, 15,origin1, difficulty1, new HashSet<>(), new HashSet<>());
         recipe5.getCategories().add(recipeCategory2);
 
         recipeRepository.saveAll(Arrays.asList(recipe1, recipe2, recipe3, recipe4, recipe5));

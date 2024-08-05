@@ -1,5 +1,5 @@
 package com.lucas.gourmet_connect.resources;
-import com.lucas.gourmet_connect.domain.Origin;
+import com.lucas.gourmet_connect.entities.Origin;
 import com.lucas.gourmet_connect.services.OriginServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

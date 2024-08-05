@@ -1,7 +1,8 @@
 package com.lucas.gourmet_connect.resources;
 
-import com.lucas.gourmet_connect.domain.Ingredient;
+import com.lucas.gourmet_connect.entities.Ingredient;
 
+import com.lucas.gourmet_connect.dto.IngredientDTO;
 import com.lucas.gourmet_connect.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,13 @@ public class IngredientResource {
     IngredientService service;
 
     @GetMapping
-    public ResponseEntity<List<Ingredient>> findAll(){
-        List<Ingredient> list = service.findAll();
+    public ResponseEntity<List<IngredientDTO>> findAll(){
+        List<IngredientDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Ingredient> findById(@PathVariable UUID id){
-        Ingredient obj = service.findById(id);
+    public ResponseEntity<IngredientDTO> findById(@PathVariable UUID id){
+        IngredientDTO obj = service.findById(id);
         return  ResponseEntity.ok().body(obj);
     }
     @PostMapping

@@ -1,4 +1,4 @@
-package com.lucas.gourmet_connect.domain;
+package com.lucas.gourmet_connect.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,6 +1,6 @@
 package com.lucas.gourmet_connect.resources;
 
-import com.lucas.gourmet_connect.domain.Difficulty;
+import com.lucas.gourmet_connect.entities.Difficulty;
 
 
 import com.lucas.gourmet_connect.services.DifficultyServices;

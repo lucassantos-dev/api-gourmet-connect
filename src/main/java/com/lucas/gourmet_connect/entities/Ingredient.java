@@ -1,4 +1,4 @@
-package com.lucas.gourmet_connect.domain;
+package com.lucas.gourmet_connect.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -40,8 +40,6 @@ public class Ingredient {
     private Set<Ingredient> substitutes = new HashSet<>();
     @JsonIgnore
     @OneToMany(mappedBy = "ingredient")
-    private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
-//     @JsonIgnore
-//     @ManyToMany(mappedBy = "ingredients")
-//     private Set<Recipe> recipes = new HashSet<>();
+    private Set<RecipeIngredient> recipes = new HashSet<>();
+
 }

@@ -1,4 +1,4 @@
-package com.lucas.gourmet_connect.domain;
+package com.lucas.gourmet_connect.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -8,20 +8,19 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Table(name = "tb_origins")
+@Table(name = "tb_ingredient_category")
 @Entity
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 @EqualsAndHashCode(of = "id")
-public class Origin {
+public class IngredientCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private String description;
     @JsonIgnore
-    @OneToMany(mappedBy = "origin")
+    @ManyToMany(mappedBy = "categories")
     private Set<Ingredient> ingredients = new HashSet<>();
 }

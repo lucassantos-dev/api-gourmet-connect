@@ -1,6 +1,8 @@
 package com.lucas.gourmet_connect.services;
 
-import com.lucas.gourmet_connect.domain.Ingredient;
+import com.lucas.gourmet_connect.entities.Ingredient;
+import com.lucas.gourmet_connect.dto.IngredientDTO;
+import com.lucas.gourmet_connect.mapper.IngredientMapper;
 import com.lucas.gourmet_connect.repositories.IngredientRepository;
 import com.lucas.gourmet_connect.services.exceptions.DatabaseException;
 import com.lucas.gourmet_connect.services.exceptions.ResourceNotFoundException;
@@ -13,19 +15,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class IngredientService {
     @Autowired
     private IngredientRepository repository;
 
-    public List<Ingredient> findAll() {
-        return repository.findAll();
+    public List<IngredientDTO> findAll() {
+        List <Ingredient> list = repository.findAll();
+        return list.stream().map(IngredientMapper::toDTO).collect(Collectors.toList());
     }
 
-    public Ingredient findById(UUID id) {
+    public IngredientDTO findById(UUID id) {
         Optional<Ingredient> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        Ingredient ingredient = obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        return IngredientMapper.toDTO(ingredient);
     }
 
     public Ingredient insert(Ingredient obj) {
