@@ -1,5 +1,6 @@
 package com.lucas.gourmet_connect.dto;
 
+import com.lucas.gourmet_connect.entities.RecipeCategory;
 import lombok.Data;
 
 import java.util.List;
@@ -13,7 +14,10 @@ public class RecipeDTO {
     private String name;
     private String description;
     private String imageUrl;
+    private List<String> instructions;
+    private Integer prepTime;
     private DifficultyDTO difficulty;
     private OriginDTO origin;
+    private Set<RecipeCategory> categories;
     private Set<RecipeIngredientsDTO> ingredients;
 }

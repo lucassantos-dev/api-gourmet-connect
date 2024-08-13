@@ -109,12 +109,12 @@ public class TestConfig implements CommandLineRunner {
         recipeRepository.saveAll(Arrays.asList(recipe1, recipe2, recipe3, recipe4, recipe5));
 
         // Create RecipeIngredient relationships
-        RecipeIngredient recipeIngredient1 = new RecipeIngredient(null, recipe1, ingredient1, 0.5);
-        RecipeIngredient recipeIngredient2 = new RecipeIngredient(null, recipe1, ingredient2, 3.0);
-        RecipeIngredient recipeIngredient3 = new RecipeIngredient(null, recipe2, ingredient2, 4.0);
-        RecipeIngredient recipeIngredient4 = new RecipeIngredient(null, recipe3, ingredient3, 1.0);
-        RecipeIngredient recipeIngredient5 = new RecipeIngredient(null, recipe4, ingredient3, 2.0);
+        RecipeIngredients recipeIngredients1 = new RecipeIngredients(null, recipe1, ingredient1, 0.5);
+        RecipeIngredients recipeIngredients2 = new RecipeIngredients(null, recipe1, ingredient2, 3.0);
+        RecipeIngredients recipeIngredients3 = new RecipeIngredients(null, recipe2, ingredient2, 4.0);
+        RecipeIngredients recipeIngredients4 = new RecipeIngredients(null, recipe3, ingredient3, 1.0);
+        RecipeIngredients recipeIngredients5 = new RecipeIngredients(null, recipe4, ingredient3, 2.0);
 
-        recipeIngredientRepository.saveAll(Arrays.asList(recipeIngredient1, recipeIngredient2, recipeIngredient3, recipeIngredient4, recipeIngredient5));
+        recipeIngredientRepository.saveAll(Arrays.asList(recipeIngredients1, recipeIngredients2, recipeIngredients3, recipeIngredients4, recipeIngredients5));
     }
 }

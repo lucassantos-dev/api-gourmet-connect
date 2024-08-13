@@ -16,7 +16,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = "id")
 public class Difficulty {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     @JsonIgnore

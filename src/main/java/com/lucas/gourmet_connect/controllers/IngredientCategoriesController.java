@@ -1,4 +1,4 @@
-package com.lucas.gourmet_connect.resources;
+package com.lucas.gourmet_connect.controllers;
 import com.lucas.gourmet_connect.entities.IngredientCategory;
 import com.lucas.gourmet_connect.services.IngredientCategoriesService;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/ingredient_categories")
-public class IngredientCategoriesResource {
+public class IngredientCategoriesController {
     @Autowired
     IngredientCategoriesService service;
 

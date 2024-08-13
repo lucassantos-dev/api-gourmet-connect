@@ -16,6 +16,6 @@ public class IngredientDTO {
     private String imageUrl;
     private OriginDTO origin;
     private Set<IngredientCategory> categories;
-    private Set<SubstituteDTO> substitute;
+    private Set<SubstituteDTO> substitutes;
     private Set<IngredientRecipesDTO> recipes;
 }

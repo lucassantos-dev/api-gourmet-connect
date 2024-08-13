@@ -11,4 +11,11 @@ public class OriginMapper {
         dto.setName(origin.getName());
         return  dto;
     }
+
+    public static Origin toEntity(OriginDTO originDTO) {
+        Origin origin = new Origin();
+        origin.setId(originDTO.getId());
+        origin.setName(originDTO.getName());
+        return origin;
+        }
 }

@@ -1,7 +1,9 @@
-package com.lucas.gourmet_connect.resources;
-import com.lucas.gourmet_connect.dto.RecipeDTO;
-import com.lucas.gourmet_connect.entities.Recipe;
-import com.lucas.gourmet_connect.services.RecipeService;
+package com.lucas.gourmet_connect.controllers;
+
+import com.lucas.gourmet_connect.entities.Ingredient;
+
+import com.lucas.gourmet_connect.dto.IngredientDTO;
+import com.lucas.gourmet_connect.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,23 +14,24 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/recipes")
-public class RecipeResource {
+@RequestMapping("/ingredients")
+public class IngredientController {
+
     @Autowired
-    RecipeService service;
+    IngredientService service;
 
     @GetMapping
-    public ResponseEntity<List<RecipeDTO>> findAll(){
-        List<RecipeDTO> list = service.findAll();
+    public ResponseEntity<List<IngredientDTO>> findAll(){
+        List<IngredientDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
     @GetMapping(value = "/{id}")
-    public ResponseEntity<RecipeDTO> findById(@PathVariable UUID id){
-        RecipeDTO obj = service.findById(id);
+    public ResponseEntity<IngredientDTO> findById(@PathVariable UUID id){
+        IngredientDTO obj = service.findById(id);
         return  ResponseEntity.ok().body(obj);
     }
     @PostMapping
-    public  ResponseEntity<Recipe> insert(@RequestBody Recipe obj){
+    public  ResponseEntity<IngredientDTO> insert(@RequestBody IngredientDTO obj){
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
@@ -40,8 +43,9 @@ public class RecipeResource {
         return ResponseEntity.noContent().build();
     }
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Recipe> update(@PathVariable UUID id, @RequestBody Recipe obj){
+    public ResponseEntity<IngredientDTO> update(@PathVariable UUID id, @RequestBody IngredientDTO obj){
         obj = service.update(id, obj);
         return  ResponseEntity.ok().body(obj);
     }
 }
+

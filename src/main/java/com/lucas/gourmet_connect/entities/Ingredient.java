@@ -40,6 +40,6 @@ public class Ingredient {
     private Set<Ingredient> substitutes = new HashSet<>();
     @JsonIgnore
     @OneToMany(mappedBy = "ingredient")
-    private Set<RecipeIngredient> recipes = new HashSet<>();
+    private Set<RecipeIngredients> recipes = new HashSet<>();
 
 }

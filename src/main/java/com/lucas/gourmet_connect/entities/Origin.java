@@ -24,4 +24,5 @@ public class Origin {
     @JsonIgnore
     @OneToMany(mappedBy = "origin")
     private Set<Ingredient> ingredients = new HashSet<>();
+
 }

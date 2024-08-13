@@ -10,4 +10,10 @@ public class DifficultyMapper {
         dto.setName(difficulty.getName());
         return  dto;
     }
+    public static Difficulty toEntity(DifficultyDTO difficultyDTO) {
+        Difficulty difficulty = new Difficulty();
+        difficulty.setId(difficultyDTO.getId());
+        difficulty.setName(difficultyDTO.getName());
+        return difficulty;
+    }
 }

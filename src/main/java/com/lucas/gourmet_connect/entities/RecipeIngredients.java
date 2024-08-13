@@ -15,24 +15,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"recipe", "ingredient"})
-public class RecipeIngredient {
+public class RecipeIngredients {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
-
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
-
     private Double quantity;
-
-    @JsonProperty("ingredient")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
 }

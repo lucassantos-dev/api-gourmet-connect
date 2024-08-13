@@ -1,6 +1,7 @@
-package com.lucas.gourmet_connect.resources;
-import com.lucas.gourmet_connect.entities.Origin;
-import com.lucas.gourmet_connect.services.OriginServices;
+package com.lucas.gourmet_connect.controllers;
+import com.lucas.gourmet_connect.dto.RecipeDTO;
+import com.lucas.gourmet_connect.entities.Recipe;
+import com.lucas.gourmet_connect.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,23 +12,23 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/origins")
-public class OriginResource {
+@RequestMapping("/recipes")
+public class RecipeController {
     @Autowired
-    OriginServices service;
+    RecipeService service;
 
     @GetMapping
-    public ResponseEntity<List<Origin>> findAll(){
-        List<Origin> list = service.findAll();
+    public ResponseEntity<List<RecipeDTO>> findAll(){
+        List<RecipeDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Origin> findById(@PathVariable UUID id){
-        Origin obj = service.findById(id);
+    public ResponseEntity<RecipeDTO> findById(@PathVariable UUID id){
+        RecipeDTO obj = service.findById(id);
         return  ResponseEntity.ok().body(obj);
     }
     @PostMapping
-    public  ResponseEntity<Origin> insert(@RequestBody Origin obj){
+    public  ResponseEntity<RecipeDTO> insert(@RequestBody RecipeDTO obj){
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
@@ -39,7 +40,7 @@ public class OriginResource {
         return ResponseEntity.noContent().build();
     }
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Origin> update(@PathVariable UUID id, @RequestBody Origin obj){
+    public ResponseEntity<RecipeDTO> update(@PathVariable UUID id, @RequestBody RecipeDTO obj){
         obj = service.update(id, obj);
         return  ResponseEntity.ok().body(obj);
     }
